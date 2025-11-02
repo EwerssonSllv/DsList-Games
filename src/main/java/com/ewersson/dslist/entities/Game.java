@@ -16,7 +16,7 @@ public class Game {
 
     @Column(name = "game_year")
     private Integer year;
-    private String gender;
+    private String genre;
     private String platforms;
     private Double score;
     private String cover;
@@ -29,14 +29,16 @@ public class Game {
 
     public Game(){}
 
-    public Game(Long id, String title, Integer year, String gender, String cover, Double score, String platforms) {
+    public Game(Long id, String title, Integer year, String genre, Double score, String platforms, String shortDescription, String cover, String longDescription) {
         this.id = id;
         this.title = title;
         this.year = year;
-        this.gender = gender;
-        this.cover = cover;
+        this.genre = genre;
         this.score = score;
         this.platforms = platforms;
+        this.shortDescription = shortDescription;
+        this.cover = cover;
+        this.longDescription = longDescription;
     }
 
     public Long getId() {
@@ -63,12 +65,12 @@ public class Game {
         this.year = year;
     }
 
-    public String getGender() {
-        return gender;
+    public String getGenre() {
+        return genre;
     }
 
-    public void setGender(String gender) {
-        this.gender = gender;
+    public void setGenre(String genre) {
+        this.genre = genre;
     }
 
     public String getPlatforms() {
@@ -93,6 +95,22 @@ public class Game {
 
     public void setCover(String cover) {
         this.cover = cover;
+    }
+
+    public String getShortDescription() {
+        return shortDescription;
+    }
+
+    public void setShortDescription(String shortDescription) {
+        this.shortDescription = shortDescription;
+    }
+
+    public String getLongDescription() {
+        return longDescription;
+    }
+
+    public void setLongDescription(String longDescription) {
+        this.longDescription = longDescription;
     }
 
     @Override
