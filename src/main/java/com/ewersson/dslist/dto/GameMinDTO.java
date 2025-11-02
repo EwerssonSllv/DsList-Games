@@ -1,8 +1,10 @@
 package com.ewersson.dslist.dto;
 
 import com.ewersson.dslist.entities.Game;
+import com.ewersson.dslist.projection.GameMinProjection;
 
 public class GameMinDTO {
+
     private Long id;
     private String title;
     private Integer year;
@@ -17,6 +19,14 @@ public class GameMinDTO {
         year = entity.getYear();
         cover = entity.getCover();
         shortDescription = entity.getShortDescription();
+    }
+
+    public GameMinDTO(GameMinProjection projection) {
+        id = projection.getId();
+        title = projection.getTitle();
+        year = projection.getYear();
+        cover = projection.getCover();
+        shortDescription = projection.getShortDescription();
     }
 
     public Long getId() {

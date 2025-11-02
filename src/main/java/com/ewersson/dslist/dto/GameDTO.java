@@ -1,43 +1,25 @@
-package com.ewersson.dslist.entities;
+package com.ewersson.dslist.dto;
 
-import jakarta.persistence.*;
+import com.ewersson.dslist.entities.Game;
+import org.springframework.beans.BeanUtils;
 
 import java.util.Objects;
 
-@Entity
-@Table(name = "game")
-public class Game {
+public class GameDTO {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String title;
-
-    @Column(name = "game_year")
-    private Integer year;
     private String genre;
+    private Integer year;
     private String platforms;
     private Double score;
-    private String cover;
-
-    @Column(columnDefinition = "TEXT")
     private String shortDescription;
-
-    @Column(columnDefinition = "TEXT")
     private String longDescription;
 
-    public Game(){}
+    public GameDTO(){}
 
-    public Game(Long id, String title, Integer year, String genre, Double score, String platforms, String shortDescription, String cover, String longDescription) {
-        this.id = id;
-        this.title = title;
-        this.year = year;
-        this.genre = genre;
-        this.score = score;
-        this.platforms = platforms;
-        this.shortDescription = shortDescription;
-        this.cover = cover;
-        this.longDescription = longDescription;
+    public GameDTO(Game game){
+        BeanUtils.copyProperties(game, this);
     }
 
     public Long getId() {
@@ -46,6 +28,14 @@ public class Game {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getGenre() {
+        return genre;
+    }
+
+    public void setGenre(String genre) {
+        this.genre = genre;
     }
 
     public String getTitle() {
@@ -64,14 +54,6 @@ public class Game {
         this.year = year;
     }
 
-    public String getGenre() {
-        return genre;
-    }
-
-    public void setGenre(String genre) {
-        this.genre = genre;
-    }
-
     public String getPlatforms() {
         return platforms;
     }
@@ -86,14 +68,6 @@ public class Game {
 
     public void setScore(Double score) {
         this.score = score;
-    }
-
-    public String getCover() {
-        return cover;
-    }
-
-    public void setCover(String cover) {
-        this.cover = cover;
     }
 
     public String getShortDescription() {
@@ -115,8 +89,8 @@ public class Game {
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
-        Game game = (Game) o;
-        return Objects.equals(id, game.id);
+        GameDTO gameDTO = (GameDTO) o;
+        return Objects.equals(id, gameDTO.id);
     }
 
     @Override

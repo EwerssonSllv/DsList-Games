@@ -23,6 +23,10 @@ public class Belonging {
         id.setGameList(gameList);
     }
 
+    public GameList getList() {
+        return id.getGameList();
+    }
+
     public BelongingPK getId() {
         return id;
     }
