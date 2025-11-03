@@ -2,7 +2,9 @@ package com.ewersson.dslist.service;
 
 import com.ewersson.dslist.dto.GameListDTO;
 import com.ewersson.dslist.entities.GameList;
+import com.ewersson.dslist.projection.GameMinProjection;
 import com.ewersson.dslist.repository.GameListRepository;
+import com.ewersson.dslist.repository.GameRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,8 +18,21 @@ public class GameListService {
     @Autowired
     private GameListRepository gameListRepository;
 
-    public GameList create(GameList gameList){
-        return gameListRepository.save(gameList);
+    @Autowired
+    private GameRepository gameRepository;
+
+    @Transactional
+    public void move(Long listId, int sourceIndex, int destinationIndex){
+        List<GameMinProjection> list = gameRepository.searchByList(listId);
+        GameMinProjection obj = list.remove(sourceIndex);
+
+        int min = Math.min(sourceIndex, destinationIndex);
+        int max = Math.max(sourceIndex, destinationIndex);
+
+        for(int i = min; i <= max; i++){
+            gameListRepository.updateBelongingPosition(listId, list.get(i).getId(), i);
+        }
+
     }
 
     @Transactional(readOnly = true)

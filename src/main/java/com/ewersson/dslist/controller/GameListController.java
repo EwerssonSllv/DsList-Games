@@ -2,6 +2,7 @@ package com.ewersson.dslist.controller;
 
 import com.ewersson.dslist.dto.GameListDTO;
 import com.ewersson.dslist.dto.GameMinDTO;
+import com.ewersson.dslist.dto.ReplacementDTO;
 import com.ewersson.dslist.service.GameListService;
 import com.ewersson.dslist.service.GameService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,11 @@ public class GameListController {
     public ResponseEntity<List<GameMinDTO>> findByList(@PathVariable Long list_id) {
         List<GameMinDTO> games = gameService.findByList(list_id);
         return ResponseEntity.ok(games);
+    }
+
+    @PostMapping("/{listId}/replacement")
+    public void move(@PathVariable Long listId, @RequestBody ReplacementDTO body) {
+        gameListService.move(listId, body.getSourceIndex(), body.getDestinationIndex());
     }
 
     @GetMapping
