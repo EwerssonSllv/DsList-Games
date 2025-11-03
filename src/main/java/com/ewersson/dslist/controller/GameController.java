@@ -2,7 +2,6 @@ package com.ewersson.dslist.controller;
 
 import com.ewersson.dslist.dto.GameDTO;
 import com.ewersson.dslist.dto.GameMinDTO;
-import com.ewersson.dslist.entities.Game;
 import com.ewersson.dslist.service.GameService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
