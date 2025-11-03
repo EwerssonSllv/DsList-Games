@@ -28,7 +28,7 @@ public class Game {
 
     public Game(){}
 
-    public Game(Long id, String title, Integer year, String genre, Double score, String platforms, String shortDescription, String cover, String longDescription) {
+    public Game(Long id, String title, Integer year, String genre, Double score, String platforms, String shortDescription, String cover , String longDescription) {
         this.id = id;
         this.title = title;
         this.year = year;
@@ -92,7 +92,7 @@ public class Game {
         return cover;
     }
 
-    public void setCover(String cover) {
+    public void setCover(String cover ) {
         this.cover = cover;
     }
 
