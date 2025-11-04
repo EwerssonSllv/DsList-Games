@@ -15,6 +15,7 @@ public class GameDTO {
     private Double score;
     private String shortDescription;
     private String longDescription;
+    private String cover;
 
     public GameDTO(){}
 
@@ -28,6 +29,14 @@ public class GameDTO {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getCover() {
+        return cover;
+    }
+
+    public void setCover(String cover) {
+        this.cover = cover;
     }
 
     public String getGenre() {
