@@ -22,18 +22,18 @@ public class GameListService {
     private GameRepository gameRepository;
 
     @Transactional
-    public void move(Long listId, int sourceIndex, int destinationIndex){
+    public void move(Long listId, int sourceIndex, int destinationIndex) {
+
         List<GameMinProjection> list = gameRepository.searchByList(listId);
+
         GameMinProjection obj = list.remove(sourceIndex);
+        list.add(destinationIndex, obj);
 
-        int min = Math.min(sourceIndex, destinationIndex);
-        int max = Math.max(sourceIndex, destinationIndex);
-
-        for(int i = min; i <= max; i++){
+        for (int i = 0; i < list.size(); i++) {
             gameListRepository.updateBelongingPosition(listId, list.get(i).getId(), i);
         }
-
     }
+
 
     @Transactional(readOnly = true)
     public GameListDTO findById(@PathVariable Long id){
